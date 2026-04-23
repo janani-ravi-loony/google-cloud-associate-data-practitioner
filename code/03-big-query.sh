@@ -97,7 +97,8 @@ name:STRING,sales:FLOAT,year:STRING
 
 bq ls --format prettyjson sales_dataset
 
-
+# IMPORTANT:
+# You can also use `bq` to load data into a BigQuery table
 
 
 #################################
@@ -126,9 +127,9 @@ FROM
 # Fix the error as shown below
 
 SELECT
-  Status, AVG( Life_expectancy_)
+  City, AVG(Total)
 FROM
-  `plucky-respect-310804.my_dataset.life_expectancy`
+  `plucky-respect-310804.sales_dataset.supermarket_sales`
 GROUP BY 
   Status
 
@@ -212,7 +213,9 @@ Give table name as - mandalay_sales
 # Show the new table created in the same sales_dataset
 
 
-
+bq query \
+--use_legacy_sql=false \
+'select * from `plucky-respect-310804.sales_dataset.supermarket_sales`'
 
 
 
